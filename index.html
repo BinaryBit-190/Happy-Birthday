@@ -23,6 +23,16 @@
   <meta property="og:image" content="https://placehold.co/1200x630/87CEEB/FFFFFF?text=A+Surprise+For+[Name]">
 </head>
 <body>
+<audio id="bg-music" loop preload="auto">
+  <source src="img/happy-birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div id="start-screen" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center text-white text-center p-6 transition-opacity duration-700">
+  <p class="text-3xl md:text-5xl font-anime mb-8">🎁 A surprise for Anjali</p>
+  <button id="start-btn" class="bg-white text-black px-8 py-3 rounded-full text-lg font-semibold shadow-lg">
+    Tap to open 🎂
+  </button>
+</div>
 <!-- Canvas for the falling cherry blossoms -->
 <canvas id="sakura-canvas"></canvas>
 
@@ -245,5 +255,16 @@ And guess what? I even received a certificate for my drawings! 🎨😂 It's fun
 
 <!-- Link to your new external JavaScript file -->
 <script src="script.js"></script>
+<script>
+  const music = document.getElementById('bg-music');
+  const startScreen = document.getElementById('start-screen');
+
+  document.getElementById('start-btn').addEventListener('click', () => {
+    music.currentTime = 0;
+    music.play().catch(() => {});
+    startScreen.style.opacity = '0';
+    setTimeout(() => startScreen.remove(), 700);
+  });
+</script>
 </body>
 </html>
